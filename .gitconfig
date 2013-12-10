@@ -1,0 +1,34 @@
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    log = auto
+    branch = auto
+	grep = auto
+[alias]
+    st = status -uno
+    ci = commit
+    di = difftool
+    me = mergetool
+    co = checkout
+    w = whatchanged --pretty=format:'%Cred%h %Cgreen(%cd) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset%n%n%B'
+    lg-s = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+    lg = log --graph --pretty=format:'%Cred%h %Cgreen(%cd) %C(bold blue)<%an>%Creset %C(yellow)%d%Creset%n%B'
+	stash-list = stash list --pretty=format:'%Cblue%gd%Cred: %C(yellow)%s'q
+[core]
+    editor = vim
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[merge]
+    tool = vimdiff
+[commit]
+    template = ~/.gitmessage
+[pager]
+  status = true
+[log]
+	date = local
+[user]
+	user = shine
+	email = shine@provideo.com.tw
