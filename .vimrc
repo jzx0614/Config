@@ -16,8 +16,8 @@ set shiftwidth=4
 set tabstop=4
 set number
 
-autocmd FileType h,c,cpp,py set expandtab
-autocmd FileType h,c,cpp,py set list | set lcs=tab:>-,nbsp:%,trail:.
+autocmd FileType h,c,cpp,py,thrift set expandtab
+autocmd FileType h,c,cpp,py,thrift,make,snip set list | set lcs=tab:>-,nbsp:%,trail:.
 
 
 "set fdm=indent
@@ -29,17 +29,53 @@ let Tlist_Process_File_Always=0
 let Tlist_Inc_Winwidth=0
 
 let g:EasyGrepMode=2
+let g:EasyGrepCommand=0
+let g:EasyGrepRecursive=1
+let g:EasyGrepIgnoreCase=1
+
 let g:git_blame_width=40
+
+if filereadable("/usr/share/dict/words")
+    set dictionary+=/usr/share/dict/words
+endif
+
+let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_min_syntax_length = 2
+let g:neocomplcache_min_keyword_length = 2
+let g:neocomplcache_enable_auto_select = 1
+
+let g:neosnippet#enable_snipmate_compatibility = 1							" Enable snipMate compatibility feature.
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'	" Tell Neosnippet about the other snippets
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
 nmap <F6> :qa<CR>
 nmap <F5> :retab<CR> :wqa!<CR>
-
-nmap <F8>   :TrinityToggleAll<CR>
-nmap <F9>   :TrinityToggleSourceExplorer<CR>
-nmap <F10>  :TrinityToggleTagList<CR>
-nmap <f11>  :TrinityToggleNERDTree<CR>
-
+nmap <F8> :TlistToggle<CR>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-Bundle 'mileszs/ack.vim'
-Bundle 'fcamel/gj'
+
+Bundle 'gmarik/vundle'
+
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
+
+Bundle 'Lokaltog/vim-easymotion'
+
+
+
+
+let $BOOST_ROOT="/opt/include"
+"let $RIVENDELL_INCLUDE="/opt/local/include/rivendell"
+let $RIVENDELL_SDK_INCLUDE="/home/shine/Program/sdk/include"
+let $RIVENDELL_FRAMEWROK_INCLUDE="/home/shine/Program/framework/include"
+set path+=$BOOST_ROOT
+set path+=$RIVENDELL_SDK_INCLUDE
+set path+=$RIVENDELL_FRAMEWROK_INCLUDE
+
