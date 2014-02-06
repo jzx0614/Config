@@ -17,15 +17,24 @@ set tabstop=4
 set number
 
 autocmd FileType h,c,cpp,py,thrift set expandtab
-autocmd FileType h,c,cpp,py,thrift,make,snip set list | set lcs=tab:>-,nbsp:%,trail:.
+
+set list 
+set listchars=tab:>-,nbsp:%,trail:.
+
+if &term == "screen"
+  let &titlestring=expand("%:t")
+  set t_ts=k
+  set t_fs=\
+  set title
+endif
 
 
 "set fdm=indent
-let Tlist_Ctags_Cmd='ctags' 
-let Tlist_Show_One_File=0 
-let Tlist_File_Fold_Auto_Close=1 
-let Tlist_Exit_OnlyWindow=1 
-let Tlist_Process_File_Always=0 
+let Tlist_Ctags_Cmd='ctags'
+let Tlist_Show_One_File=0
+let Tlist_File_Fold_Auto_Close=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Process_File_Always=0
 let Tlist_Inc_Winwidth=0
 
 let g:EasyGrepMode=2
@@ -39,6 +48,7 @@ if filereadable("/usr/share/dict/words")
     set dictionary+=/usr/share/dict/words
 endif
 
+let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 "let g:neocomplcache_enable_smart_case = 1
 let g:neocomplcache_min_syntax_length = 2
@@ -53,8 +63,9 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-nmap <F6> :qa<CR>
+nnoremap <F7> :set number!<CR> :set list!<CR>
 nmap <F5> :retab<CR> :wqa!<CR>
+nmap <F6> :qa<CR>
 nmap <F8> :TlistToggle<CR>
 
 set rtp+=~/.vim/bundle/vundle/
