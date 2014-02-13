@@ -22,10 +22,16 @@ set list
 set listchars=tab:>-,nbsp:%,trail:.
 
 if &term == "screen"
+  set t_k1=[11~
+  set t_k2=[12~
+  set t_k3=[13~
+  set t_k4=[14~
   let &titlestring=expand("%:t")
   set t_ts=k
   set t_fs=\
   set title
+"  map OH <HOME>
+"  imap OH <HOME>
 endif
 
 
@@ -44,19 +50,32 @@ let g:EasyGrepIgnoreCase=1
 
 let g:git_blame_width=40
 
-if filereadable("/usr/share/dict/words")
-    set dictionary+=/usr/share/dict/words
+let $BOOST_ROOT="/opt/include"
+let $RIVENDELL_SDK_INCLUDE="/home/shine/Program/sdk/include"
+let $RIVENDELL_FRAMEWROK_INCLUDE="/home/shine/Program/framework/include"
+set path+=$BOOST_ROOT
+set path+=$RIVENDELL_SDK_INCLUDE
+set path+=$RIVENDELL_FRAMEWROK_INCLUDE
+
+let g:neocomplcache_enable_at_startup=1
+let g:neocomplcache_enable_auto_select=0
+let g:neocomplcache_include_paths={'cpp' : '.,/opt/include,/home/shine/Program/sdk/include,/home/shine/Program/framework/include', }
+let g:neocomplcache_include_patterns={'cpp' : '^\s*#\s*include', }
+
+
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_force_omni_patterns={}
 endif
+let g:neocomplcache_force_omni_patterns.php='[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c='[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp='[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-let g:acp_enableAtStartup = 0
-let g:neocomplcache_enable_at_startup = 1
-"let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 2
-let g:neocomplcache_min_keyword_length = 2
-let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_clang_use_library=1
+let g:neocomplcache_clang_user_options= ''
+let g:neocomplcache_clang_debug=1
 
-let g:neosnippet#enable_snipmate_compatibility = 1							" Enable snipMate compatibility feature.
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'	" Tell Neosnippet about the other snippets
+let g:neosnippet#enable_snipmate_compatibility=1 "Enable snipMate compatibility feature.
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets' " Tell Neosnippet about the other snippets
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -64,7 +83,7 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
 nnoremap <F7> :set number!<CR> :set list!<CR>
-nmap <F5> :retab<CR> :wqa!<CR>
+nmap <F5> :wqa!<CR>
 nmap <F6> :qa<CR>
 nmap <F8> :TlistToggle<CR>
 
@@ -76,17 +95,8 @@ Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
+Bundle 'Shougo/neocomplcache-clang'
 
 Bundle 'Lokaltog/vim-easymotion'
-
-
-
-
-let $BOOST_ROOT="/opt/include"
-"let $RIVENDELL_INCLUDE="/opt/local/include/rivendell"
-let $RIVENDELL_SDK_INCLUDE="/home/shine/Program/sdk/include"
-let $RIVENDELL_FRAMEWROK_INCLUDE="/home/shine/Program/framework/include"
-set path+=$BOOST_ROOT
-set path+=$RIVENDELL_SDK_INCLUDE
-set path+=$RIVENDELL_FRAMEWROK_INCLUDE
+Bundle 'Townk/vim-autoclose'
 
