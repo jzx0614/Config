@@ -1,8 +1,15 @@
+term screen-256color
+attrcolor b ".I"    # allow bold colors - necessary for some reason
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'   # tell screen how to set colors. AB = background, AF=foreground
+defbce on    # use current bg color for erased chars
+
 caption always "%{= BB}  %{= WK}%-w%<%{= RW}%n %t%{= WK}%+w%-030=%{YK} %Y %M %d(%D) %{RW} %C %A %-02=%{= BB}"
 defutf8 on
 defencoding utf8
 bind b encoding big5 utf8 # convert big5 to utf8
 bind u encoding utf8 utf8
+
 startup_message off
 defscrollback 5000
 shelltitle '$ |bash'
+
