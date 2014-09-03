@@ -122,6 +122,12 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+cd ~/Program/ATM6/Script
+. Bashrc
+cd -
+
+
+export PATH="$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/opt/BullseyeCoverage/bin"
 
 # colorful man page
 export PAGER="`which less` -s"

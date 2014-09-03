@@ -59,17 +59,17 @@ let g:EasyGrepIgnoreCase=1
 let g:git_blame_width=40
 
 
-let $BOOST_ROOT="/opt/include"
-let $RIVENDELL_SDK_INCLUDE="/home/shine/Program/sdk/include"
-let $RIVENDELL_FRAMEWROK_INCLUDE="/home/shine/Program/framework/include"
-set path+=$BOOST_ROOT
-set path+=$RIVENDELL_SDK_INCLUDE
-set path+=$RIVENDELL_FRAMEWROK_INCLUDE
+"let $BOOST_ROOT="/opt/include"
+"let $RIVENDELL_SDK_INCLUDE="/home/shine/Program/sdk/include"
+"let $RIVENDELL_FRAMEWROK_INCLUDE="/home/shine/Program/framework/include"
+"set path+=$BOOST_ROOT
+"set path+=$RIVENDELL_SDK_INCLUDE
+"set path+=$RIVENDELL_FRAMEWROK_INCLUDE
 
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_enable_auto_select=0
-let g:neocomplcache_include_paths={'cpp' : '.,/opt/include,/home/shine/Program/sdk/include,/home/shine/Program/framework/include', }
-let g:neocomplcache_include_patterns={'cpp' : '^\s*#\s*include', }
+"let g:neocomplcache_include_paths={'cpp' : '.,/home1/shine/Program//include,/home/shine/Program/framework/include', }
+"let g:neocomplcache_include_patterns={'cpp' : '^\s*#\s*include', }
 
 
 if !exists('g:neocomplcache_omni_patterns')
