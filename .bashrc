@@ -11,7 +11,7 @@ function git_branch {
 }
 
 function get_ipaddress {
-    echo $(ifconfig | awk -F "[ .]+" '/Bcast/ { print $5"."$6}')
+    echo $(/sbin/ifconfig | awk -F "[ .]+" '/Bcast/ && NR < 10 { print $5"."$6}')
 }
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -122,12 +122,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-cd ~/Program/ATM6/Script
-. Bashrc
-cd -
 
 
-export PATH="$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/opt/BullseyeCoverage/bin"
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 
 # colorful man page
 export PAGER="`which less` -s"

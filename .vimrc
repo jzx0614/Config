@@ -2,6 +2,7 @@ syntax on
 set guifontset=8x16,kc15f,-*-16-*-big5-0
 set background=dark
 set t_Co=256
+set bs=2
 set hls
 set fileencodings=utf-8,big5,gbk,latin1
 set fileencoding=utf-8
@@ -23,10 +24,14 @@ set cindent
 
 autocmd FileType h,c,cpp,py,thrift set expandtab
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 set list 
 set listchars=tab:>-,nbsp:%,trail:.
 
-if &term == "screen"
+if &term =~ "^screen"
   set t_k1=[11~
   set t_k2=[12~
   set t_k3=[13~
@@ -35,9 +40,11 @@ if &term == "screen"
   set t_ts=k
   set t_fs=\
   set title
-"  map OH <HOME>
-"  imap OH <HOME>
+  map OH <HOME>
+  imap OH <HOME>
 endif
+
+set tags=/home/shine/Program/ATM6/Src/tags
 
 set wildignore+=*.so,*.so.*,*.swp,*.zip,*.o,*.out
 set wildignore+=*/tmp/*,*/gen-cpp/*,*/gmock/*
@@ -58,26 +65,21 @@ let g:EasyGrepIgnoreCase=1
 
 let g:git_blame_width=40
 
-
-"let $BOOST_ROOT="/opt/include"
-"let $RIVENDELL_SDK_INCLUDE="/home/shine/Program/sdk/include"
-"let $RIVENDELL_FRAMEWROK_INCLUDE="/home/shine/Program/framework/include"
-"set path+=$BOOST_ROOT
-"set path+=$RIVENDELL_SDK_INCLUDE
-"set path+=$RIVENDELL_FRAMEWROK_INCLUDE
+let $BOOST_ROOT="/usr/local/include"
+set path+=$BOOST_ROOT
 
 let g:neocomplcache_enable_at_startup=1
 let g:neocomplcache_enable_auto_select=0
 "let g:neocomplcache_include_paths={'cpp' : '.,/home1/shine/Program//include,/home/shine/Program/framework/include', }
-"let g:neocomplcache_include_patterns={'cpp' : '^\s*#\s*include', }
+let g:neocomplcache_include_patterns={'cpp' : '^\s*#\s*include', }
 
 
 if !exists('g:neocomplcache_omni_patterns')
   let g:neocomplcache_force_omni_patterns={}
 endif
-let g:neocomplcache_force_omni_patterns.php='[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplcache_force_omni_patterns.php='[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c='[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp='[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"let g:neocomplcache_force_omni_patterns.cpp='[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 let g:neocomplcache_enable_insert_char_pre = 1
 
 " Close popup by <Space>.
@@ -93,17 +95,31 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets' " Tell
 " More neocomplcache candidates.
 let g:neocomplcache_max_list = 300
 
-" Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
+nmap <F1> :cp<CR>
+nmap <F2> :cn<CR>
+
 nmap <F3> [c
 nmap <F4> ]c
-nnoremap <F7> :AutoCloseToggle<CR>:NeoComplCacheToggle<CR>:set cindent!<CR>:set number!<CR>:set list!<CR>
+"nnoremap <F7> :AutoCloseToggle<CR>:NeoComplCacheToggle<CR>:set cindent!<CR>:set number!<CR>:set list!<CR>
+nnoremap <F7> :NeoComplCacheToggle<CR>:set cindent!<CR>:set number!<CR>:set list!<CR>
 nmap <F5> :wqa!<CR>
 nmap <F6> :qa<CR>
 nmap <F8> :TlistToggle<CR>
+nmap <F9> :cclose<CR>
+nmap <F10> do
+
+nmap <Leader>1 <Esc>:tabn 1<Enter>
+nmap <Leader>2 <Esc>:tabn 2<Enter>
+nmap <Leader>3 <Esc>:tabn 3<Enter>
+nmap <Leader>4 <Esc>:tabn 4<Enter>
+nmap <Leader>5 <Esc>:tabn 5<Enter>
+nmap <Leader>6 <Esc>:tabn 6<Enter>
+nmap <Leader>7 <Esc>:tabn 7<Enter>
+nmap <Leader>8 <Esc>:tabn 8<Enter>
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -113,10 +129,9 @@ Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
-"Bundle 'Shougo/neocomplcache-clang'
 
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Townk/vim-autoclose'
+"Bundle 'Townk/vim-autoclose'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
 
