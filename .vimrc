@@ -22,7 +22,7 @@ set encoding=utf-8
 
 set cindent
 
-autocmd FileType h,c,cpp,py,thrift set expandtab
+autocmd FileType h,c,cpp,python set expandtab
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -42,6 +42,9 @@ if &term =~ "^screen"
   set title
   map OH <HOME>
   imap OH <HOME>
+  for [key, code] in [["<F1>", "\eOP"], ["<F2>", "\eOQ"], ["<F3>", "\eOR"], ["<F4>", "\eOS"], ]
+    execute "set" key."=".code 
+  endfor
 endif
 
 set tags=/home/shine/Program/ATM6/Src/tags
@@ -99,6 +102,9 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
+
 nmap <F1> :cp<CR>
 nmap <F2> :cn<CR>
 
@@ -134,4 +140,5 @@ Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'Townk/vim-autoclose'
 Bundle 'bling/vim-airline'
 Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/syntastic'
 
