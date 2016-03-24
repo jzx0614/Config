@@ -10,9 +10,7 @@ function git_branch {
     echo "("${ref#refs/heads/}")";
 }
 
-function get_ipaddress {
-    echo $(/sbin/ifconfig | awk -F "[ .]+" '/Bcast/ && NR < 10 { print $5"."$6}')
-}
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
@@ -58,16 +56,16 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]$(get_ipaddress)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_branch)\$ '
+    PS1='\h:\[\033[01;34m\]\w\[\033[00m\]$(git_branch)\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}$(get_ipaddress):\w$(git_branch)\$ '
+    PS1='\h:$(git_branch)\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        PS1="\[\e]0;\u@\h: \w\a\]$PS1"
     ;;
     screen*)
         screen_set_window_title () {
@@ -114,6 +112,7 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
+alias ls='ls -G'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
