@@ -46,8 +46,8 @@ if &term =~ "^screen"
     execute "set" key."=".code 
   endfor
 endif
-
-set tags=/home/shine/Program/ATM6/Src/tags
+let git_root = system('git rev-parse --show-toplevel')
+set tags=./tags,../tags,tags
 
 set wildignore+=*.so,*.so.*,*.swp,*.zip,*.o,*.out
 set wildignore+=*/tmp/*,*/gen-cpp/*,*/gmock/*
@@ -127,18 +127,46 @@ nmap <Leader>6 <Esc>:tabn 6<Enter>
 nmap <Leader>7 <Esc>:tabn 7<Enter>
 nmap <Leader>8 <Esc>:tabn 8<Enter>
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Vundle 
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-Bundle 'gmarik/vundle'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'Townk/vim-autoclose'
-Bundle 'bling/vim-airline'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/syntastic'
+" All of your Plugins must be added before the following line
+Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+
+Plugin 'Lokaltog/vim-easymotion'
+"Plugin 'Townk/vim-autoclose'
+Plugin 'bling/vim-airline'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'Vimjas/vim-python-pep8-indent'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 
