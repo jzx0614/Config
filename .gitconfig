@@ -23,8 +23,6 @@
     prompt = false
 [merge]
     tool = vimdiff
-[commit]
-    template = ~/.gitmessage
 [pager]
     status = true
 [log]
