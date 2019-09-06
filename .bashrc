@@ -58,9 +58,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]$(get_ipaddress)\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_branch)\$ '
+    PS1='\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_branch)\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}$(get_ipaddress):\w$(git_branch)\$ '
+    PS1='\u:\w$(git_branch)\$ '
 fi
 unset color_prompt force_color_prompt
 

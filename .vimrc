@@ -101,13 +101,13 @@ nmap <Leader>8 <Esc>:tabn 8<Enter>
 
 " Vundle 
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Plugin 'VundleVim/Vundle'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
